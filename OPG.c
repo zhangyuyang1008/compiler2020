@@ -151,6 +151,12 @@ void getopg(){
 				char y=charNow;
 				while(true){
 					char x=pop();
+					if(y==')'){
+						if(x=='+'||x=='*'){
+							printf("RE\n");
+							return;			
+						}
+					}
 					if(x=='N') continue;
 					if(priority[index_c(x)][index_c(y)]==2||priority[index_c(x)][index_c(y)]==0){
 						y=x;
