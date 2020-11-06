@@ -112,7 +112,9 @@ void getopg(){
 	memset(T,0,sizeof(char)*1009);
 	fgets(T,1009,fd);	//会读入换行符
 	push('#');
-	T[strlen(T)]='#';
+	int pos=strlen(T)-2;
+	T[pos]='#';
+	T[pos+1]='\0';
 	//去掉换行符 
 	for(i=0;i<strlen(T);i++){
 		charNow=T[i];
