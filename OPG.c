@@ -65,7 +65,7 @@ void init_priority(){
 }
 
 //求算符在优先关系矩阵中的下标 
-int index(char c){
+int index_c(char c){
 	int i;
 	switch (c){
 		case '+': i=0; break;
@@ -127,19 +127,19 @@ void getopg(){
 			cmp=S[cmp_s];
 		} 
 		if(cmp=='#'&&charNow=='#') return;
-		if(index(charNow)==-1){
+		if(index_c(charNow)==-1){
 			//对于不能识别的符号 
 			printf("E\n");
 			exit(0);
 		}
-		else if(priority[index(cmp)][index(charNow)]==-1){
+		else if(priority[index_c(cmp)][index_c(charNow)]==-1){
 			//对于无法比较优先级的情况 
 			printf("E\n");
 			exit(0);
 		}
 		else{
 			//正常情况，规约素短语 
-			if(priority[index(cmp)][index(charNow)]==1||priority[index(cmp)][index(charNow)]==0){
+			if(priority[index_c(cmp)][index_c(charNow)]==1||priority[index_c(cmp)][index_c(charNow)]==0){
 				//当优先级关系为<或= 
 				push(charNow);
 				printf("I%c\n",charNow);
@@ -150,11 +150,11 @@ void getopg(){
 				while(true){
 					char x=pop();
 					if(x=='N') continue;
-					if(priority[index(x)][index(y)]==2||priority[index(x)][index(y)]==0){
+					if(priority[index_c(x)][index_c(y)]==2||priority[index_c(x)][index_c(y)]==0){
 						y=x;
 						continue;
 					}
-					if(priority[index(x)][index(y)]==1){
+					if(priority[index_c(x)][index_c(y)]==1){
 						push(x);
 						//成功规约 
 						printf("R\n");
@@ -169,7 +169,7 @@ void getopg(){
 	}
 } 
 
-main函数 
+//main函数 
 int main(int argc,char *argv[]) {
     fd = fopen(argv[1],"r");
     //初始化优先关系矩阵
