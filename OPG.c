@@ -149,8 +149,13 @@ void getopg(){
 			else{
 				//当优先级为>，进行规约
 				char y=charNow;
+				char x=S[s-1];
+				if(x!='i'&&x!='N'&&x!=')'){
+					printf("RE\n");
+					return;
+				}
 				while(true){
-					char x=pop();
+					x=pop();
 					if(x=='N') continue;
 					if(priority[index_c(x)][index_c(y)]==2||priority[index_c(x)][index_c(y)]==0){
 						y=x;
