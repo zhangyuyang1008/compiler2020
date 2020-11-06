@@ -1,6 +1,6 @@
 [jobs.opg]
 
-image = { source = "dockerfile", path = ".", tag = "opg-example" }
+image = { source = "dockerfile", path = ".", tag = "pascal-lex-example" }
 
 run = [
   "./OPG $input",
