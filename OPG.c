@@ -47,7 +47,7 @@ void init_priority(){
 	priority[3][2]=-1;
 	priority[3][3]=2;
 	priority[3][4]=-1;
-	priority[3][5]=-1;
+	priority[3][5]=2;
 	
 	priority[4][0]=2;
 	priority[4][1]=2;
