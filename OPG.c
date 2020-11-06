@@ -3,23 +3,23 @@
 #include <stdlib.h>
 #include <stdbool.h>
 #include <ctype.h>
-//ÎÄ¼şÖ¸Õë
+//æ–‡ä»¶æŒ‡é’ˆ
 FILE * fd;
 
-//ÊäÈë´® 
+//è¾“å…¥ä¸² 
 char T[1010]; 
 
-//¶ÁÈë·ûºÅ
+//è¯»å…¥ç¬¦å·
 char charNow;
 
-//·ûºÅÕ»
+//ç¬¦å·æ ˆ
 char S[1010];
 
 
-//ÓÅÏÈ¹ØÏµ¾ØÕó 
+//ä¼˜å…ˆå…³ç³»çŸ©é˜µ 
 int priority[7][7]; 
 
-//³õÊ¼»¯ÓÅÏÈ¹ØÏµ¾ØÕó  ´óÓÚ£º2£¬Ğ¡ÓÚ£º1£¬µÈÓÚ£º0£¬²»´æÔÚ=-1 
+//åˆå§‹åŒ–ä¼˜å…ˆå…³ç³»çŸ©é˜µ  å¤§äºï¼š2ï¼Œå°äºï¼š1ï¼Œç­‰äºï¼š0ï¼Œä¸å­˜åœ¨=-1 
 void init_priority(){
 	priority[0][0]=2;
 	priority[0][1]=1;
@@ -64,7 +64,7 @@ void init_priority(){
 	priority[5][5]=0;
 }
 
-//ÇóËã·ûÔÚÓÅÏÈ¹ØÏµ¾ØÕóÖĞµÄÏÂ±ê 
+//æ±‚ç®—ç¬¦åœ¨ä¼˜å…ˆå…³ç³»çŸ©é˜µä¸­çš„ä¸‹æ ‡ 
 int index(char c){
 	int i;
 	switch (c){
@@ -79,11 +79,11 @@ int index(char c){
 	return i;
 }
 
-//Õ»ÄÚÓëÕ»Íâ½øĞĞ±È½ÏµÄ·ûºÅ
+//æ ˆå†…ä¸æ ˆå¤–è¿›è¡Œæ¯”è¾ƒçš„ç¬¦å·
 char cmp; 
 
 
-//Õ»ÄÚÔªËØ¸öÊı
+//æ ˆå†…å…ƒç´ ä¸ªæ•°
 int s; 
 
 //push
@@ -103,17 +103,17 @@ char pop(){
 int cmp_s;
  
  
-//·ÖÎöº¯Êı
+//åˆ†æå‡½æ•°
 void getopg(){
-	//³õÊ¼»¯ÓÃµ½µÄ±äÁ¿ 
+	//åˆå§‹åŒ–ç”¨åˆ°çš„å˜é‡ 
 	s=0;
 	int i=0;
 	memset(S,0,sizeof(char)*1009);
 	memset(T,0,sizeof(char)*1009);
-	fgets(T,1009,fd);	//»á¶ÁÈë»»ĞĞ·û
+	fgets(T,1009,fd);	//ä¼šè¯»å…¥æ¢è¡Œç¬¦
 	push('#');
 	T[strlen(T)]='#';
-	//È¥µô»»ĞĞ·û 
+	//å»æ‰æ¢è¡Œç¬¦ 
 	for(i=0;i<strlen(T);i++){
 		charNow=T[i];
 		cmp_s=s-1;
@@ -128,24 +128,24 @@ void getopg(){
 		} 
 		if(cmp=='#'&&charNow=='#') return;
 		if(index(charNow)==-1){
-			//¶ÔÓÚ²»ÄÜÊ¶±ğµÄ·ûºÅ 
+			//å¯¹äºä¸èƒ½è¯†åˆ«çš„ç¬¦å· 
 			printf("E\n");
 			exit(0);
 		}
 		else if(priority[index(cmp)][index(charNow)]==-1){
-			//¶ÔÓÚÎŞ·¨±È½ÏÓÅÏÈ¼¶µÄÇé¿ö 
+			//å¯¹äºæ— æ³•æ¯”è¾ƒä¼˜å…ˆçº§çš„æƒ…å†µ 
 			printf("E\n");
 			exit(0);
 		}
 		else{
-			//Õı³£Çé¿ö£¬¹æÔ¼ËØ¶ÌÓï 
+			//æ­£å¸¸æƒ…å†µï¼Œè§„çº¦ç´ çŸ­è¯­ 
 			if(priority[index(cmp)][index(charNow)]==1||priority[index(cmp)][index(charNow)]==0){
-				//µ±ÓÅÏÈ¼¶¹ØÏµÎª<»ò= 
+				//å½“ä¼˜å…ˆçº§å…³ç³»ä¸º<æˆ–= 
 				push(charNow);
 				printf("I%c\n",charNow);
 			}
 			else{
-				//µ±ÓÅÏÈ¼¶Îª>£¬½øĞĞ¹æÔ¼
+				//å½“ä¼˜å…ˆçº§ä¸º>ï¼Œè¿›è¡Œè§„çº¦
 				char y=charNow;
 				while(true){
 					char x=pop();
@@ -156,7 +156,7 @@ void getopg(){
 					}
 					if(priority[index(x)][index(y)]==1){
 						push(x);
-						//³É¹¦¹æÔ¼ 
+						//æˆåŠŸè§„çº¦ 
 						printf("R\n");
 						i--; 
 						push('N');
@@ -169,21 +169,10 @@ void getopg(){
 	}
 } 
 
-//mainº¯Êı 
-//int main(int argc,char *argv[]) {
-//    fd = fopen(argv[1],"r");
-//    //³õÊ¼»¯ÓÅÏÈ¹ØÏµ¾ØÕó
-//	init_priority();
-//    while(!feof(fd)){
-//        getopg();
-//    }
-//    fclose(fd);
-//    return 0;
-//}
-
-int main() {
-    fd = fopen("test.txt","r");
-    //³õÊ¼»¯ÓÅÏÈ¹ØÏµ¾ØÕó
+mainå‡½æ•° 
+int main(int argc,char *argv[]) {
+    fd = fopen(argv[1],"r");
+    //åˆå§‹åŒ–ä¼˜å…ˆå…³ç³»çŸ©é˜µ
 	init_priority();
     while(!feof(fd)){
         getopg();
@@ -191,3 +180,14 @@ int main() {
     fclose(fd);
     return 0;
 }
+
+//int main() {
+//    fd = fopen("test.txt","r");
+//    //åˆå§‹åŒ–ä¼˜å…ˆå…³ç³»çŸ©é˜µ
+//	init_priority();
+//    while(!feof(fd)){
+//        getopg();
+//    }
+//    fclose(fd);
+//    return 0;
+//}
